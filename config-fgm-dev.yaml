@@ -1,0 +1,18 @@
+appName: Crop Health
+APP:
+  Name: Crop Health
+  Logo: NA
+  Location: Sudan
+  LAI: PngItem_128558.png
+Client:
+  Name: FGM
+  Logo: fgm.png
+  Location: Sudan
+Us:
+  Name: AmunData
+  Logo: https://www.amundata.com/wp-content/uploads/2021/02/cropped-AmunData-Logo-Black-1980x516.png
+  Location: Sudan
+
+StartDate : 2022-06-01
+appSemanticVersion: 0.9.3
+ClientName: FGM

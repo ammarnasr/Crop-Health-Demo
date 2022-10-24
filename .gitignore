@@ -1,0 +1,15 @@
+.streamlit
+.vscode
+__*
+*.ipynb*
+raw*
+processed*
+curated*
+testing*
+*.cpg
+*.dbf
+*.prj
+*.shp
+*.shx
+*.zip
+# *.toml

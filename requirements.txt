@@ -1,0 +1,13 @@
+streamlit
+geopandas
+streamlit-folium
+matplotlib
+sentinelhub
+rioxarray
+shapely
+azure-keyvault-secrets
+azure-identity
+confuse
+plotly
+folium
+mapclassify
