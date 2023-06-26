@@ -10,27 +10,10 @@ from sentinelhub import  SHConfig
 
 config = SHConfig()
 
-config.instance_id      = "9dabbb4c-16a0-4d29-8699-90605775bc94"
-config.sh_client_id     = "ae10e67d-8ce7-4a94-ae5e-42de12acca14"
-config.sh_client_secret = "Ff:R!@OS5<nJrk,*%My%ZX]gy>[v%V,:y|dljVN:"
 
-# config.instance_id      = "cb6710d9-89e6-4805-80e6-56874aa53f34"
-# config.sh_client_id     = "c1210371-c926-43c9-bf96-877aa179c37e"
-# config.sh_client_secret = "mi9w(#xfPMA>J5m(HeFBN8JHkTq4CRw?BjbwK3+E"
-
-# config.instance_id      = "19e335ae-5825-448f-a6ea-0b5dbe5c6468"
-# config.sh_client_id     = "d461cad2-4f66-4b15-92a0-8e5e28612d5e"
-# config.sh_client_secret = "viGI~szLboIu)*Rpexo[qbk2uB[-dWX~DzK)W16z"
-
-
-# config.instance_id      = "19e335ae-5825-448f-a6ea-0b5dbe5c6468"
-# config.sh_client_id     = "d461cad2-4f66-4b15-92a0-8e5e28612d5e"
-# config.sh_client_secret = "viGI~szLboIu)*Rpexo[qbk2uB[-dWX~DzK)W16z"
-#ToDo: Set up the call for secrets so that it only runs once.
-# config.instance_id      = utils.getSecret('SentinelHub-instanceid')
-# config.sh_client_id     = utils.getSecret('SentinelHub-clientid')
-# config.sh_client_secret = utils.getSecret('SentinelHub-clientsecret')
-
+config.instance_id       = '2a82ed95-c95f-41d2-9fff-d2362e187dcd'   
+config.sh_client_id      = '81045f25-ec7a-47e5-998d-0ea883408219' 
+config.sh_client_secret  = '3|2h:Lds?++@P>jvVhsrV|v|AY{i<InrFunM+|-w'
 ##################################--Getting The Dates--##################################
 def get_dates(bbox, token, year=2022, start_date='', end_date=''):
     '''

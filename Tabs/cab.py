@@ -9,7 +9,6 @@ from scipy import signal
 from datetime import datetime
 import os
 from zipfile import ZipFile
-import utils
 
 CONFIG = utils.parse_app_config()
 ##################################--Set & Calculate The CAB Parameters--##################################
@@ -22,6 +21,7 @@ for i in range(len(src_df)):
     field_id_map[str(i)] =  src_df.iloc[i].Field_Id
     field_name_map[str(i)] =  src_df.iloc[i].Crop_Type
 choropleth_map = main.get_location_choropleth()
+
 def app():
     f_id = -1
     
