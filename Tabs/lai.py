@@ -81,7 +81,7 @@ def app():
 
 ##################################--Plot  A Field map and add download links--##################################
     if (date != -1) and (f_id != -1):   
-        fig, title, df_Metric = main.get_metric_for_field_figure(metric, date, f_id)
+        # fig, title, df_Metric = main.get_metric_for_field_figure(metric, date, f_id)
         
         # clp_df = main.get_cuarted_df_for_field('CLP', date, f_id)
         # avg_clp = clp_df[f'CLP_{date}'].mean() *100
@@ -89,20 +89,21 @@ def app():
         # if avg_clp > 80:
         #     st.warning(f'⚠️ The Avarage Cloud Cover is {avg_clp}%')
         #     st.info('Please Select A Different Date')
-        if 60 >80:
-            st.write('nothing')
-        else:
-            st.write(title)
-            # utils.basemaps['Google Satellite'].add_to(fig)
-            # st.pyplot(fig, width = 725)
-            a = df_Metric.columns[0]
-            x = df_Metric[a].describe()
+        # else:
+        #     st.write(title)
+        #     # utils.basemaps['Google Satellite'].add_to(fig)
+        #     # st.pyplot(fig, width = 725)
+        #     a = df_Metric.columns[0]
+        #     x = df_Metric[a].describe()
             
-            col1, col2 = st.columns([1,3])
-            with col1:
-                st.write(x)
-            with col2:
-                st_folium(fig, width = 725)
+        #     col1, col2 = st.columns([1,3])
+        #     with col1:
+        #         st.write(x)
+        #     with col2:
+        #         st_folium(fig, width = 725)
+            fig, title, df_Metric = main.get_metric_for_field_figure(metric, date, f_id)
+
+            st_folium(fig, width = 725)
 
 
 
