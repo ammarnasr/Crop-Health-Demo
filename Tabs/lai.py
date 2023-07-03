@@ -127,10 +127,11 @@ def app():
                     #     st.download_button('Download as ShapeFile', f,file_name=zipFileName)
 
                 with col2:
-                    filename = utils.get_masked_location_img_path(main.clientName, metric, date, f_id)
-                    donwnload_filename = f'{metric}_{f_id}_{date}.tiff'
-                    with open(filename, 'rb') as f:
-                        st.download_button('Download as Tiff File', f,file_name=donwnload_filename)
+                    st.write('Download Tiff File')
+                    # filename = utils.get_masked_location_img_path(main.clientName, metric, date, f_id)
+                    # donwnload_filename = f'{metric}_{f_id}_{date}.tiff'
+                    # with open(filename, 'rb') as f:
+                    #     st.download_button('Download as Tiff File', f,file_name=donwnload_filename)
 
 ##################################--Expriment--##################################
 
