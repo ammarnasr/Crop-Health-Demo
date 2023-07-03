@@ -44,7 +44,7 @@ def app():
         
     col1, col2 = st.columns(2)
     with col1:
-        utils.basemaps['openstreetmap'].add_to(choropleth_map)
+        # utils.basemaps['openstreetmap'].add_to(choropleth_map)
         st_data = st_folium(choropleth_map, width = 500, height = 200)
     with col2:
         field_names = list(field_name_map.values())
