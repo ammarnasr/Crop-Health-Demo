@@ -107,32 +107,32 @@ def app():
 
 
 
-            if len(df_Metric) > 0:
-                col1, col2 = st.columns(2)
-                with col1:
-                    shapefilename = f"{f_id}_{metric}"
-                    extension = 'shp'
-                    path = f'./shapefiles/{f_id}/{metric}/{extension}'
-                    utils.make_dir(path)
-                    df_Metric.to_file(f'{path}/{shapefilename}.{extension}')
-                    files = []
-                    for i in os.listdir(path):
-                        if os.path.isfile(os.path.join(path,i)):
-                            if i[0:len(shapefilename)] == shapefilename:
-                                files.append(os.path.join(path,i))
-                    zipFileName = f'{path}/data.zip'
-                    zipObj = ZipFile(zipFileName, 'w')
-                    for file in files:
-                        zipObj.write(file)
-                    zipObj.close()
-                    with open(zipFileName, 'rb') as f:
-                        st.download_button('Download as ShapeFile', f,file_name=zipFileName)
+            # if len(df_Metric) > 0:
+            #     col1, col2 = st.columns(2)
+            #     with col1:
+            #         shapefilename = f"{f_id}_{metric}"
+            #         extension = 'shp'
+            #         path = f'./shapefiles/{f_id}/{metric}/{extension}'
+            #         utils.make_dir(path)
+            #         df_Metric.to_file(f'{path}/{shapefilename}.{extension}')
+            #         files = []
+            #         for i in os.listdir(path):
+            #             if os.path.isfile(os.path.join(path,i)):
+            #                 if i[0:len(shapefilename)] == shapefilename:
+            #                     files.append(os.path.join(path,i))
+            #         zipFileName = f'{path}/data.zip'
+            #         zipObj = ZipFile(zipFileName, 'w')
+            #         for file in files:
+            #             zipObj.write(file)
+            #         zipObj.close()
+            #         with open(zipFileName, 'rb') as f:
+            #             st.download_button('Download as ShapeFile', f,file_name=zipFileName)
 
-                with col2:
-                    filename = utils.get_masked_location_img_path(main.clientName, metric, date, f_id)
-                    donwnload_filename = f'{metric}_{f_id}_{date}.tiff'
-                    with open(filename, 'rb') as f:
-                        st.download_button('Download as Tiff File', f,file_name=donwnload_filename)
+            #     with col2:
+            #         filename = utils.get_masked_location_img_path(main.clientName, metric, date, f_id)
+            #         donwnload_filename = f'{metric}_{f_id}_{date}.tiff'
+            #         with open(filename, 'rb') as f:
+            #             st.download_button('Download as Tiff File', f,file_name=donwnload_filename)
 
 ##################################--Expriment--##################################
 
