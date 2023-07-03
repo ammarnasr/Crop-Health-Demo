@@ -83,12 +83,14 @@ def app():
     if (date != -1) and (f_id != -1):   
         fig, title, df_Metric = main.get_metric_for_field_figure(metric, date, f_id)
         
-        clp_df = main.get_cuarted_df_for_field('CLP', date, f_id)
-        avg_clp = clp_df[f'CLP_{date}'].mean() *100
+        # clp_df = main.get_cuarted_df_for_field('CLP', date, f_id)
+        # avg_clp = clp_df[f'CLP_{date}'].mean() *100
 
-        if avg_clp > 80:
-            st.warning(f'⚠️ The Avarage Cloud Cover is {avg_clp}%')
-            st.info('Please Select A Different Date')
+        # if avg_clp > 80:
+        #     st.warning(f'⚠️ The Avarage Cloud Cover is {avg_clp}%')
+        #     st.info('Please Select A Different Date')
+        if 60 >80:
+            st.write('nothing')
         else:
             st.write(title)
             # utils.basemaps['Google Satellite'].add_to(fig)
@@ -107,31 +109,29 @@ def app():
             if len(df_Metric) > 0:
                 col1, col2 = st.columns(2)
                 with col1:
-                    st.write('Download Shapefile')
-                    # shapefilename = f"{f_id}_{metric}"
-                    # extension = 'shp'
-                    # path = f'./shapefiles/{f_id}/{metric}/{extension}'
-                    # utils.make_dir(path)
-                    # df_Metric.to_file(f'{path}/{shapefilename}.{extension}')
-                    # files = []
-                    # for i in os.listdir(path):
-                    #     if os.path.isfile(os.path.join(path,i)):
-                    #         if i[0:len(shapefilename)] == shapefilename:
-                    #             files.append(os.path.join(path,i))
-                    # zipFileName = f'{path}/data.zip'
-                    # zipObj = ZipFile(zipFileName, 'w')
-                    # for file in files:
-                    #     zipObj.write(file)
-                    # zipObj.close()
-                    # with open(zipFileName, 'rb') as f:
-                    #     st.download_button('Download as ShapeFile', f,file_name=zipFileName)
+                    shapefilename = f"{f_id}_{metric}"
+                    extension = 'shp'
+                    path = f'./shapefiles/{f_id}/{metric}/{extension}'
+                    utils.make_dir(path)
+                    df_Metric.to_file(f'{path}/{shapefilename}.{extension}')
+                    files = []
+                    for i in os.listdir(path):
+                        if os.path.isfile(os.path.join(path,i)):
+                            if i[0:len(shapefilename)] == shapefilename:
+                                files.append(os.path.join(path,i))
+                    zipFileName = f'{path}/data.zip'
+                    zipObj = ZipFile(zipFileName, 'w')
+                    for file in files:
+                        zipObj.write(file)
+                    zipObj.close()
+                    with open(zipFileName, 'rb') as f:
+                        st.download_button('Download as ShapeFile', f,file_name=zipFileName)
 
                 with col2:
-                    st.write('Download Tiff File')
-                    # filename = utils.get_masked_location_img_path(main.clientName, metric, date, f_id)
-                    # donwnload_filename = f'{metric}_{f_id}_{date}.tiff'
-                    # with open(filename, 'rb') as f:
-                    #     st.download_button('Download as Tiff File', f,file_name=donwnload_filename)
+                    filename = utils.get_masked_location_img_path(main.clientName, metric, date, f_id)
+                    donwnload_filename = f'{metric}_{f_id}_{date}.tiff'
+                    with open(filename, 'rb') as f:
+                        st.download_button('Download as Tiff File', f,file_name=donwnload_filename)
 
 ##################################--Expriment--##################################
 
