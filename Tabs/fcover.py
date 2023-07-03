@@ -62,7 +62,7 @@ def app():
     if (date != -1) and (f_id != -1):   
         fig, title = main.get_metric_for_field_figure(metric, date, f_id)
         st.write(title)
-        utils.basemaps['Google Satellite'].add_to(fig)
+        # utils.basemaps['Google Satellite'].add_to(fig)
         st_folium(fig, width = 725)
         filename = utils.get_masked_location_img_path(main.clientName, metric, date, f_id)
         donwnload_filename = f'{metric}_{f_id}_{date}.tiff'
@@ -159,7 +159,7 @@ def app():
             st.info('Please Select A Different Date')
         else:
             st.write(title)
-            utils.basemaps['Google Satellite'].add_to(fig)
+            # utils.basemaps['Google Satellite'].add_to(fig)
             # st.pyplot(fig, width = 725)
             st_folium(fig, width = 725)
 

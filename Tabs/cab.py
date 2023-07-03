@@ -90,7 +90,7 @@ def app():
             st.info('Please Select A Different Date')
         else:
             st.write(title)
-            utils.basemaps['Google Satellite'].add_to(fig)
+            # utils.basemaps['Google Satellite'].add_to(fig)
             # st.pyplot(fig, width = 725)
             st_folium(fig, width = 725)
 

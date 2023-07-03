@@ -36,7 +36,7 @@ def app():
         
         fig, title = main.get_metric_for_field_figure(metric, date, f_id)
         st.write(title)
-        utils.basemaps['Google Satellite'].add_to(fig)
+        # utils.basemaps['Google Satellite'].add_to(fig)
         st_folium(fig, width = 725)
 
         

@@ -91,7 +91,7 @@ def app():
             st.info('Please Select A Different Date')
         else:
             st.write(title)
-            utils.basemaps['Google Satellite'].add_to(fig)
+            # utils.basemaps['Google Satellite'].add_to(fig)
             # st.pyplot(fig, width = 725)
             a = df_Metric.columns[0]
             x = df_Metric[a].describe()
