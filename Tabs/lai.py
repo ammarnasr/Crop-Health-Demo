@@ -139,43 +139,43 @@ def app():
     
 
 ##################################--Plot Historic Avarages--##################################
-    options_list = ['YES', 'NO']
-    display_historic_avgs = st.selectbox('Do you want to show Historic avrages? : ', options_list, index=1)
-    selected_f_ids = []
+    # options_list = ['YES', 'NO']
+    # display_historic_avgs = st.selectbox('Do you want to show Historic avrages? : ', options_list, index=1)
+    # selected_f_ids = []
     
-    if display_historic_avgs == 'YES':
-        options = st.multiselect('Select Field(s) For Historic Comparison', field_names)
-        if len(options) > 0:
-            for o in options:
-                a= keys_list[field_names.index(o)]
-                selected_f_ids.append(field_id_map[a])
+    # if display_historic_avgs == 'YES':
+    #     options = st.multiselect('Select Field(s) For Historic Comparison', field_names)
+    #     if len(options) > 0:
+    #         for o in options:
+    #             a= keys_list[field_names.index(o)]
+    #             selected_f_ids.append(field_id_map[a])
         
-        done = st.checkbox('Click Here when done')
-        if done:
-            my_bar2 = st.progress(0)
-            status_text = st.empty()
+    #     done = st.checkbox('Click Here when done')
+    #     if done:
+    #         my_bar2 = st.progress(0)
+    #         status_text = st.empty()
 
-            my_bar = st.progress(0)
-            today =  datetime.today().strftime('%Y-%m-%d')
-            historic_avarage_plot = make_subplots(specs=[[{"secondary_y": True}]])
-            status_text_date = st.empty()
+    #         my_bar = st.progress(0)
+    #         today =  datetime.today().strftime('%Y-%m-%d')
+    #         historic_avarage_plot = make_subplots(specs=[[{"secondary_y": True}]])
+    #         status_text_date = st.empty()
 
             
-            for row_fid in selected_f_ids:
-                status_text.text(f'Calculating Value for Field {row_fid}')
-                xs, ys = [],[]
-                dates = get_and_cache_available_dates(row_fid, Data_Path, today)
+    #         for row_fid in selected_f_ids:
+    #             status_text.text(f'Calculating Value for Field {row_fid}')
+    #             xs, ys = [],[]
+    #             dates = get_and_cache_available_dates(row_fid, Data_Path, today)
                 
-                for i in range(len(dates)-1):
-                    status_text_date.text(f'{dates[i]}...')
-                    current_df = main.get_cuarted_df_for_field(metric, dates[i], row_fid)
-                    avg_val = current_df[f'{metric}_{dates[i]}'].mean()
-                    xs.append(dates[i])
-                    ys.append(avg_val)
-                    my_bar.progress((i + 1)/(len(dates)-1))
-                ys = signal.savgol_filter(ys,7, 3)
-                historic_avarage_plot.add_trace(go.Scatter(x=xs, y=ys, name=f"Field {row_fid} data"), secondary_y=True)
-                my_bar2.progress((selected_f_ids.index(row_fid)+ 1)/(len(selected_f_ids)))
+    #             for i in range(len(dates)-1):
+    #                 status_text_date.text(f'{dates[i]}...')
+    #                 current_df = main.get_cuarted_df_for_field(metric, dates[i], row_fid)
+    #                 avg_val = current_df[f'{metric}_{dates[i]}'].mean()
+    #                 xs.append(dates[i])
+    #                 ys.append(avg_val)
+    #                 my_bar.progress((i + 1)/(len(dates)-1))
+    #             ys = signal.savgol_filter(ys,7, 3)
+    #             historic_avarage_plot.add_trace(go.Scatter(x=xs, y=ys, name=f"Field {row_fid} data"), secondary_y=True)
+    #             my_bar2.progress((selected_f_ids.index(row_fid)+ 1)/(len(selected_f_ids)))
 
-            st.plotly_chart(historic_avarage_plot, use_container_width=True)
+    #         st.plotly_chart(historic_avarage_plot, use_container_width=True)
 
