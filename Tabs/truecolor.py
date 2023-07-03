@@ -22,7 +22,7 @@ choropleth_map = main.get_location_choropleth()
 
 def app():
     f_id = -1
-    @st.cache()
+    @st.cache_data()
     def get_and_cache_available_dates(field_id, Data_Path, today):
         print(f'Caching Dates for {field_id} in {Data_Path} on {today}')
         dates = main.get_user_selection_dates(field_id)
