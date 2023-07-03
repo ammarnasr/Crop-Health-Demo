@@ -81,101 +81,98 @@ def app():
 
 ##################################--Plot  A Field map and add download links--##################################
     if (date != -1) and (f_id != -1):   
-        # fig, title, df_Metric = main.get_metric_for_field_figure(metric, date, f_id)
+        fig, title, df_Metric = main.get_metric_for_field_figure(metric, date, f_id)
         
-        # clp_df = main.get_cuarted_df_for_field('CLP', date, f_id)
-        # avg_clp = clp_df[f'CLP_{date}'].mean() *100
+        clp_df = main.get_cuarted_df_for_field('CLP', date, f_id)
+        avg_clp = clp_df[f'CLP_{date}'].mean() *100
 
-        # if avg_clp > 80:
-        #     st.warning(f'⚠️ The Avarage Cloud Cover is {avg_clp}%')
-        #     st.info('Please Select A Different Date')
-        # else:
-        #     st.write(title)
-        #     # utils.basemaps['Google Satellite'].add_to(fig)
-        #     # st.pyplot(fig, width = 725)
-        #     a = df_Metric.columns[0]
-        #     x = df_Metric[a].describe()
+        if avg_clp > 80:
+            st.warning(f'⚠️ The Avarage Cloud Cover is {avg_clp}%')
+            st.info('Please Select A Different Date')
+        else:
+            st.write(title)
+            # utils.basemaps['Google Satellite'].add_to(fig)
+            # st.pyplot(fig, width = 725)
+            a = df_Metric.columns[0]
+            x = df_Metric[a].describe()
             
-        #     col1, col2 = st.columns([1,3])
-        #     with col1:
-        #         st.write(x)
-        #     with col2:
-        #         st_folium(fig, width = 725)
-            fig, title, df_Metric = main.get_metric_for_field_figure(metric, date, f_id)
-
-            st_folium(fig, width = 725)
+            col1, col2 = st.columns([1,3])
+            with col1:
+                st.write(x)
+            with col2:
+                st_folium(fig, width = 725)
 
 
 
-            # if len(df_Metric) > 0:
-            #     col1, col2 = st.columns(2)
-            #     with col1:
-            #         shapefilename = f"{f_id}_{metric}"
-            #         extension = 'shp'
-            #         path = f'./shapefiles/{f_id}/{metric}/{extension}'
-            #         utils.make_dir(path)
-            #         df_Metric.to_file(f'{path}/{shapefilename}.{extension}')
-            #         files = []
-            #         for i in os.listdir(path):
-            #             if os.path.isfile(os.path.join(path,i)):
-            #                 if i[0:len(shapefilename)] == shapefilename:
-            #                     files.append(os.path.join(path,i))
-            #         zipFileName = f'{path}/data.zip'
-            #         zipObj = ZipFile(zipFileName, 'w')
-            #         for file in files:
-            #             zipObj.write(file)
-            #         zipObj.close()
-            #         with open(zipFileName, 'rb') as f:
-            #             st.download_button('Download as ShapeFile', f,file_name=zipFileName)
+            if len(df_Metric) > 0:
+                col1, col2 = st.columns(2)
+                with col1:
+                    shapefilename = f"{f_id}_{metric}"
+                    extension = 'shp'
+                    path = f'./shapefiles/{f_id}/{metric}/{extension}'
+                    utils.make_dir(path)
+                    df_Metric.to_file(f'{path}/{shapefilename}.{extension}')
+                    files = []
+                    for i in os.listdir(path):
+                        if os.path.isfile(os.path.join(path,i)):
+                            if i[0:len(shapefilename)] == shapefilename:
+                                files.append(os.path.join(path,i))
+                    zipFileName = f'{path}/data.zip'
+                    zipObj = ZipFile(zipFileName, 'w')
+                    for file in files:
+                        zipObj.write(file)
+                    zipObj.close()
+                    with open(zipFileName, 'rb') as f:
+                        st.download_button('Download as ShapeFile', f,file_name=zipFileName)
 
-            #     with col2:
-            #         filename = utils.get_masked_location_img_path(main.clientName, metric, date, f_id)
-            #         donwnload_filename = f'{metric}_{f_id}_{date}.tiff'
-            #         with open(filename, 'rb') as f:
-            #             st.download_button('Download as Tiff File', f,file_name=donwnload_filename)
+                with col2:
+                    filename = utils.get_masked_location_img_path(main.clientName, metric, date, f_id)
+                    donwnload_filename = f'{metric}_{f_id}_{date}.tiff'
+                    with open(filename, 'rb') as f:
+                        st.download_button('Download as Tiff File', f,file_name=donwnload_filename)
 
 ##################################--Expriment--##################################
 
     
 
 ##################################--Plot Historic Avarages--##################################
-    # options_list = ['YES', 'NO']
-    # display_historic_avgs = st.selectbox('Do you want to show Historic avrages? : ', options_list, index=1)
-    # selected_f_ids = []
+    options_list = ['YES', 'NO']
+    display_historic_avgs = st.selectbox('Do you want to show Historic avrages? : ', options_list, index=1)
+    selected_f_ids = []
     
-    # if display_historic_avgs == 'YES':
-    #     options = st.multiselect('Select Field(s) For Historic Comparison', field_names)
-    #     if len(options) > 0:
-    #         for o in options:
-    #             a= keys_list[field_names.index(o)]
-    #             selected_f_ids.append(field_id_map[a])
+    if display_historic_avgs == 'YES':
+        options = st.multiselect('Select Field(s) For Historic Comparison', field_names)
+        if len(options) > 0:
+            for o in options:
+                a= keys_list[field_names.index(o)]
+                selected_f_ids.append(field_id_map[a])
         
-    #     done = st.checkbox('Click Here when done')
-    #     if done:
-    #         my_bar2 = st.progress(0)
-    #         status_text = st.empty()
+        done = st.checkbox('Click Here when done')
+        if done:
+            my_bar2 = st.progress(0)
+            status_text = st.empty()
 
-    #         my_bar = st.progress(0)
-    #         today =  datetime.today().strftime('%Y-%m-%d')
-    #         historic_avarage_plot = make_subplots(specs=[[{"secondary_y": True}]])
-    #         status_text_date = st.empty()
+            my_bar = st.progress(0)
+            today =  datetime.today().strftime('%Y-%m-%d')
+            historic_avarage_plot = make_subplots(specs=[[{"secondary_y": True}]])
+            status_text_date = st.empty()
 
             
-    #         for row_fid in selected_f_ids:
-    #             status_text.text(f'Calculating Value for Field {row_fid}')
-    #             xs, ys = [],[]
-    #             dates = get_and_cache_available_dates(row_fid, Data_Path, today)
+            for row_fid in selected_f_ids:
+                status_text.text(f'Calculating Value for Field {row_fid}')
+                xs, ys = [],[]
+                dates = get_and_cache_available_dates(row_fid, Data_Path, today)
                 
-    #             for i in range(len(dates)-1):
-    #                 status_text_date.text(f'{dates[i]}...')
-    #                 current_df = main.get_cuarted_df_for_field(metric, dates[i], row_fid)
-    #                 avg_val = current_df[f'{metric}_{dates[i]}'].mean()
-    #                 xs.append(dates[i])
-    #                 ys.append(avg_val)
-    #                 my_bar.progress((i + 1)/(len(dates)-1))
-    #             ys = signal.savgol_filter(ys,7, 3)
-    #             historic_avarage_plot.add_trace(go.Scatter(x=xs, y=ys, name=f"Field {row_fid} data"), secondary_y=True)
-    #             my_bar2.progress((selected_f_ids.index(row_fid)+ 1)/(len(selected_f_ids)))
+                for i in range(len(dates)-1):
+                    status_text_date.text(f'{dates[i]}...')
+                    current_df = main.get_cuarted_df_for_field(metric, dates[i], row_fid)
+                    avg_val = current_df[f'{metric}_{dates[i]}'].mean()
+                    xs.append(dates[i])
+                    ys.append(avg_val)
+                    my_bar.progress((i + 1)/(len(dates)-1))
+                ys = signal.savgol_filter(ys,7, 3)
+                historic_avarage_plot.add_trace(go.Scatter(x=xs, y=ys, name=f"Field {row_fid} data"), secondary_y=True)
+                my_bar2.progress((selected_f_ids.index(row_fid)+ 1)/(len(selected_f_ids)))
 
-    #         st.plotly_chart(historic_avarage_plot, use_container_width=True)
+            st.plotly_chart(historic_avarage_plot, use_container_width=True)
 
