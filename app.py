@@ -1,7 +1,5 @@
 import streamlit as st
-from multipage import MultiPage
-from Tabs import  landingpage, lai, cab, truecolor, fcover, clp
-
+from Tabs import  landingpage, metric, truecolor, add_box, commit
 # streamlit_app.py
 
 def add_bg_from_url():
@@ -63,20 +61,24 @@ st.set_page_config(
 )
 
 
-# add_bg_from_url()
 if True:
-# if check_password():
+    tabs_names = ["Home", "LAI", "CAB", "FCOVER", "TRUECOLOR", "Add Box", "Commit"]
+    tabs = st.tabs(tabs_names)
+
+    with tabs[0]:
+        landingpage.app()
+
+    for i in range(1, 4):
+        with tabs[i]:
+            metric.app(tabs_names[i])
+
+    with tabs[4]:
+        truecolor.app()
+
+    with tabs[5]:
+        add_box.app()
+
+    with tabs[6]:
+        commit.app()
+
     
-    # Create an instance of the app 
-    app = MultiPage()
-
-    # Add all your applications (pages) here
-    app.add_page("Home", landingpage.app)
-    app.add_page("LAI", lai.app)
-    app.add_page("CAB", cab.app)
-    app.add_page("FCOVER", fcover.app)
-    # app.add_page("CLP", clp.app)
-    app.add_page("TRUECOLOR", truecolor.app)
-
-    # The main app
-    app.run()

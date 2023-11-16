@@ -13,3 +13,11 @@ testing*
 *.shx
 *.zip
 # *.toml
+images_CLP
+images_FCOVER
+images_TRUECOLOR
+FGM International
+historic_avarages_cache
+shapefiles
+cache
+FGM
