@@ -10,8 +10,6 @@ pinned: false
 license: openrail
 ---
 
-Here is a draft README.md for your geospatial crop monitoring project:
-
 # Agricultural Remote Sensing Monitoring
 
 This project provides a dashboard for monitoring crops via remote sensing data. It allows farmers to view vegetation metrics for their fields over time to track crop health and growth.
@@ -64,5 +62,3 @@ Potential features to add:
 ## Authors
 
 Your name and contact info 
-
-Let me know if you would like any changes to this README! I aimed to provide an overview of the key features and how to use the dashboard.
